@@ -1,10 +1,10 @@
 /**
- * <emu-services> 校园服务组件
+ * <uem-services> 校园服务组件
  *
- * 渲染"校园服务"区域，包含 <emu-service-card> 子组件
+ * 渲染"校园服务"区域，包含 <uem-service-card> 子组件
  */
 import { PORTAL_ITEMS, FEEDBACK_LINKS } from '@/config/services';
-import { openLightbox } from './emu-lightbox';
+import { openLightbox } from './uem-lightbox';
 
 // 导入二维码图片资源
 import qrcodeFeedback from '../../assets/survey-qrcode-feature-feedbck.png';
@@ -13,7 +13,7 @@ import qrcodeRequest from '../../assets/survey-qrcode-new-feature-request.png';
 // 动态导入所有校历/作息表资源
 const calendarImages = import.meta.glob('../../assets/university_calendar/*.{png,jpg,jpeg,webp}', { eager: true });
 
-export class EmuServices extends HTMLElement {
+export class UemServices extends HTMLElement {
     connectedCallback(): void {
         this.render();
         this.initFeedbackDialog();
@@ -23,13 +23,13 @@ export class EmuServices extends HTMLElement {
     private render(): void {
         const cardsHtml = PORTAL_ITEMS.map(
             (item) => `
-      <emu-service-card
+      <uem-service-card
         icon="${item.icon}"
         title="${item.title}"
         description="${item.description}"
         href="${item.href}"
         soon="${'soon' in item && item.soon ? 'true' : 'false'}"
-      ></emu-service-card>
+      ></uem-service-card>
     `
         ).join('');
 
@@ -77,7 +77,7 @@ export class EmuServices extends HTMLElement {
       </section>
 
       <!-- 反馈与需求弹窗 -->
-      <emu-float
+      <uem-float
         id="feedback-dialog"
         max-width="max-w-3xl"
         subtitle="Feedback & Request"
@@ -123,10 +123,10 @@ export class EmuServices extends HTMLElement {
             </p>
           </a>
         </div>
-      </emu-float>
+      </uem-float>
 
       <!-- 校历与作息表弹窗 -->
-      <emu-float
+      <uem-float
         id="calendar-dialog"
         max-width="max-w-4xl"
         subtitle="University Calendar & Schedule"
@@ -204,7 +204,7 @@ export class EmuServices extends HTMLElement {
             保存图片
           </button>
         </div>
-      </emu-float>
+      </uem-float>
     `;
     }
 
@@ -257,7 +257,7 @@ export class EmuServices extends HTMLElement {
                 const typeLabel = type === 'calendar' ? '校历' : '作息时间表';
                 IMAGE_MAP[year][type] = {
                     src,
-                    filename: `EMU-NCIST-${year}-${type.charAt(0).toUpperCase() + type.slice(1)}.${extension}`,
+                    filename: `UEM-NCIST-${year}-${type.charAt(0).toUpperCase() + type.slice(1)}.${extension}`,
                     label: `${year} 学年 ${typeLabel}`
                 };
             }
@@ -444,17 +444,17 @@ export class EmuServices extends HTMLElement {
     }
 }
 
-customElements.define('emu-services', EmuServices);
+customElements.define('uem-services', UemServices);
 
 /**
- * <emu-service-card> 校园服务卡片组件
+ * <uem-service-card> 校园服务卡片组件
  *
  * 属性：
  *  - icon: Material Symbols 图标名
  *  - title: 卡片标题
  *  - href: 链接地址
  */
-export class EmuServiceCard extends HTMLElement {
+export class UemServiceCard extends HTMLElement {
   /** 监听的属性列表 */
   static get observedAttributes(): string[] {
     return ['icon', 'title', 'description', 'href', 'soon'];
@@ -548,4 +548,4 @@ export class EmuServiceCard extends HTMLElement {
   }
 }
 
-customElements.define('emu-service-card', EmuServiceCard);
+customElements.define('uem-service-card', UemServiceCard);

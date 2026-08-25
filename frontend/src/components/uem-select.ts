@@ -1,7 +1,7 @@
 /**
- * <emu-select> 通用单选下拉框组件
+ * <uem-select> 通用单选下拉框组件
  *
- * 原生 Web Component，无依赖、风格与站点其它 emu-* 组件一致（Tailwind + 主题色 token）。
+ * 原生 Web Component，无依赖、风格与站点其它 uem-* 组件一致（Tailwind + 主题色 token）。
  * 适合做「从一组选项里选一个，可清除」的轻量筛选下拉，避免选项过多时平铺占满工具栏。
  *
  * 属性（HTML attribute，可响应式更新）：
@@ -14,32 +14,32 @@
  * - value: string | null —— 当前选中值（getter / setter，设为 null 表示清空）
  *
  * 事件：
- * - 'emu-select-change': CustomEvent<{ value: string | null }>
+ * - 'uem-select-change': CustomEvent<{ value: string | null }>
  *   选中、切换或清除时派发，detail.value 为最新选中值（null 表示已清除）。
  *
  * 用法：
- *   const sel = document.createElement('emu-select') as EmuSelect;
+ *   const sel = document.createElement('uem-select') as UemSelect;
  *   sel.setAttribute('placeholder', '全部学院');
  *   sel.setAttribute('clearable', '');
  *   sel.options = ['计算机科学与工程学院', '安全工程学院'];
- *   sel.addEventListener('emu-select-change', (e) => console.log(e.detail.value));
+ *   sel.addEventListener('uem-select-change', (e) => console.log(e.detail.value));
  */
 
-const STYLE_ID = 'emu-select-styles';
+const STYLE_ID = 'uem-select-styles';
 
 function ensureStyles(): void {
   if (document.getElementById(STYLE_ID)) return;
   const style = document.createElement('style');
   style.id = STYLE_ID;
   style.textContent = `
-    @keyframes emu-select-pop {
+    @keyframes uem-select-pop {
       from { opacity: 0; transform: translateY(-6px) scale(0.98); }
       to   { opacity: 1; transform: none; }
     }
-    emu-select [data-panel] { animation: emu-select-pop 0.16s cubic-bezier(0.16, 1, 0.3, 1) backwards; transform-origin: top; }
-    emu-select [data-list]::-webkit-scrollbar { width: 6px; }
-    emu-select [data-list]::-webkit-scrollbar-thumb { background: rgba(116,119,130,0.30); border-radius: 9999px; }
-    emu-select [data-list]::-webkit-scrollbar-track { background: transparent; }
+    uem-select [data-panel] { animation: uem-select-pop 0.16s cubic-bezier(0.16, 1, 0.3, 1) backwards; transform-origin: top; }
+    uem-select [data-list]::-webkit-scrollbar { width: 6px; }
+    uem-select [data-list]::-webkit-scrollbar-thumb { background: rgba(116,119,130,0.30); border-radius: 9999px; }
+    uem-select [data-list]::-webkit-scrollbar-track { background: transparent; }
   `;
   document.head.appendChild(style);
 }
@@ -53,7 +53,7 @@ const esc = (s: string): string =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 
-export class EmuSelect extends HTMLElement {
+export class UemSelect extends HTMLElement {
   private _options: string[] = [];
   private _value: string | null = null;
   private _open = false;
@@ -121,7 +121,7 @@ export class EmuSelect extends HTMLElement {
   /* —— 内部行为 —— */
   private emitChange(): void {
     this.dispatchEvent(
-      new CustomEvent<{ value: string | null }>('emu-select-change', {
+      new CustomEvent<{ value: string | null }>('uem-select-change', {
         detail: { value: this._value },
         bubbles: true,
       }),
@@ -130,13 +130,13 @@ export class EmuSelect extends HTMLElement {
 
   private openPanel(): void {
     if (this._open) return;
-    // 关闭页面上所有其他 emu-select 的面板，避免多面板重叠
-    document.querySelectorAll<EmuSelect>('emu-select').forEach((el) => {
+    // 关闭页面上所有其他 uem-select 的面板，避免多面板重叠
+    document.querySelectorAll<UemSelect>('uem-select').forEach((el) => {
       if (el !== this && el._open) el._open = false;
     });
     this._open = true;
     // 全部关闭后统一重渲染一次（比逐个 render 更高效）
-    document.querySelectorAll<EmuSelect>('emu-select').forEach((el) => el.render());
+    document.querySelectorAll<UemSelect>('uem-select').forEach((el) => el.render());
   }
   private closePanel(): void {
     if (!this._open) return;
@@ -250,4 +250,4 @@ export class EmuSelect extends HTMLElement {
   }
 }
 
-customElements.define('emu-select', EmuSelect);
+customElements.define('uem-select', UemSelect);

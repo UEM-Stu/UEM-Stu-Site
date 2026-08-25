@@ -1,5 +1,5 @@
 /**
- * <emu-easter-egg> 官网交互彩蛋管理器
+ * <uem-easter-egg> 官网交互彩蛋管理器
  *
  * 全局捕获 Logo 连击与秘籍，触发以下彩蛋流程：
  * 1. 平滑回到页面最顶部。
@@ -9,7 +9,7 @@
  * 5. 5秒后，标语淡出，Hero 原内容以平滑渐显的方式复原。
  */
 
-export class EmuEasterEgg extends HTMLElement {
+export class UemEasterEgg extends HTMLElement {
     // Logo 点击统计
     private _clickCount = 0;
     private _clickTimer: number | null = null;
@@ -27,7 +27,7 @@ export class EmuEasterEgg extends HTMLElement {
     connectedCallback(): void {
         this.setupStyles();
         this.setupEventListeners();
-        console.log('[EMU-Stu] Win气泡彩蛋已加载。提示：连击 Logo 3次 或键盘输入 "win" 触发！');
+        console.log('[UEM-Stu] Win气泡彩蛋已加载。提示：连击 Logo 3次 或键盘输入 "win" 触发！');
     }
 
     disconnectedCallback(): void {
@@ -141,7 +141,7 @@ export class EmuEasterEgg extends HTMLElement {
         // 1. 委托监听 Logo 的点击（1.5秒内连击 3次 触发）
         this._clickHandler = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
-            const logo = target.closest('emu-header img[alt="EMU-Stu Logo"]');
+            const logo = target.closest('uem-header img[alt="UEM-Stu Logo"]');
             if (logo) {
                 this.handleLogoClick();
             }
@@ -209,8 +209,8 @@ export class EmuEasterEgg extends HTMLElement {
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
         // 2. 寻找 Hero 模块的相关节点
-        const wrapper = document.querySelector('emu-hero #hero-content-wrapper') as HTMLElement;
-        const eggContainer = document.querySelector('emu-hero #hero-easter-egg-container') as HTMLElement;
+        const wrapper = document.querySelector('uem-hero #hero-content-wrapper') as HTMLElement;
+        const eggContainer = document.querySelector('uem-hero #hero-easter-egg-container') as HTMLElement;
 
         // 3. 丝滑隐去原 Hero 内容 (延迟 100ms 保证滚动动作已开始)
         setTimeout(() => {
@@ -345,8 +345,8 @@ export class EmuEasterEgg extends HTMLElement {
      * 平滑恢复 Hero 模块原状
      */
     private restoreHero(): void {
-        const wrapper = document.querySelector('emu-hero #hero-content-wrapper') as HTMLElement;
-        const eggContainer = document.querySelector('emu-hero #hero-easter-egg-container') as HTMLElement;
+        const wrapper = document.querySelector('uem-hero #hero-content-wrapper') as HTMLElement;
+        const eggContainer = document.querySelector('uem-hero #hero-easter-egg-container') as HTMLElement;
 
         // 1. 标语渐隐
         if (eggContainer) {
@@ -372,4 +372,4 @@ export class EmuEasterEgg extends HTMLElement {
     }
 }
 
-customElements.define('emu-easter-egg', EmuEasterEgg);
+customElements.define('uem-easter-egg', UemEasterEgg);

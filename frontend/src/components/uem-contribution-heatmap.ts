@@ -1,12 +1,12 @@
 /**
- * <emu-contribution-heatmap> 组织贡献热力图组件 (年度弹窗版 - 像素级美化)
+ * <uem-contribution-heatmap> 组织贡献热力图组件 (年度弹窗版 - 像素级美化)
  * 
  * 渲染一个原生的 HTML5 <dialog> 弹窗，其中包含完整自然年（53周）的组织活跃热力图。
  * 像素级还原 GitHub 官方热力图配色（0-4级亮暗色阶）与紧凑画幅（10px 方块，2px 间距）。
  * 未来的日子显示为 0 级格但不可交互，跨年补位格透明，使格网整齐划一。
  */
-import './emu-tooltip';
-import { EmuFloat } from './emu-float';
+import './uem-tooltip';
+import { UemFloat } from './uem-float';
 
 interface MetricData {
   additions: number;
@@ -30,7 +30,7 @@ interface DayStats {
   repos: RepoData[];
 }
 
-export class EmuContributionHeatmap extends HTMLElement {
+export class UemContributionHeatmap extends HTMLElement {
   private _historyData: DayStats[] = [];
   private _dataLoaded: boolean = false;
 
@@ -50,7 +50,7 @@ export class EmuContributionHeatmap extends HTMLElement {
    */
   private async fetchStats(): Promise<void> {
     try {
-      const response = await fetch('https://cdn.jsdelivr.net/gh/EMU-Stu/EMU-Stu-Site@stats-data/stats.json', { cache: 'no-store' });
+      const response = await fetch('https://cdn.jsdelivr.net/gh/UEM-Stu/UEM-Stu-Site@stats-data/stats.json', { cache: 'no-store' });
       if (!response.ok) {
         throw new Error(`Failed to fetch stats: ${response.status}`);
       }
@@ -66,12 +66,12 @@ export class EmuContributionHeatmap extends HTMLElement {
   }
 
   /**
-   * 渲染弹窗底层结构，使用 emu-float 统一弹窗组件
+   * 渲染弹窗底层结构，使用 uem-float 统一弹窗组件
    * 弹窗最大宽度设为 max-w-3xl (768px)，搭配 20px 格网在大屏下可不发生滚动完整铺满
    */
   private renderBaseStructure(): void {
     this.innerHTML = `
-      <emu-float title="组织活跃热力图" subtitle="Org Contribution Heatmap" max-width="max-w-3xl">
+      <uem-float title="组织活跃热力图" subtitle="Org Contribution Heatmap" max-width="max-w-3xl">
 
         <!-- 控制栏（包含统计口径与时间范围说明） -->
         <div class="w-full flex items-center justify-between mb-5 select-none text-xs">
@@ -137,7 +137,7 @@ export class EmuContributionHeatmap extends HTMLElement {
           <span>多</span>
         </div>
 
-      </emu-float>
+      </uem-float>
     `;
   }
 
@@ -145,7 +145,7 @@ export class EmuContributionHeatmap extends HTMLElement {
    * 打开弹窗并渲染热力图
    */
   public open(): void {
-    const floatEl = this.querySelector<EmuFloat>('emu-float');
+    const floatEl = this.querySelector<UemFloat>('uem-float');
     if (!floatEl) return;
     floatEl.showModal();
     this.renderHeatmap();
@@ -157,12 +157,12 @@ export class EmuContributionHeatmap extends HTMLElement {
    * 关闭弹窗
    */
   public close(): void {
-    const floatEl = this.querySelector<EmuFloat>('emu-float');
+    const floatEl = this.querySelector<UemFloat>('uem-float');
     floatEl?.close();
   }
 
   /**
-   * 生成单个格子 tooltip 的内容 HTML（桌面端 emu-tooltip 与移动端长按浮窗共用）
+   * 生成单个格子 tooltip 的内容 HTML（桌面端 uem-tooltip 与移动端长按浮窗共用）
    */
   private cellTooltipHTML(dateStr: string): string {
     const { val, additions, deletions, commits, commitsTracked, dateTracked } = this.getDayVal(dateStr);
@@ -184,7 +184,7 @@ export class EmuContributionHeatmap extends HTMLElement {
 
   /**
    * 移动端长按拖动浏览：在热力图网格上长按唤起 tooltip，手指上下左右滑动即切换显示不同格子。
-   * 桌面端（具备 hover）不受影响，仍用 emu-tooltip 悬停显示。
+   * 桌面端（具备 hover）不受影响，仍用 uem-tooltip 悬停显示。
    */
   private setupTouchScrub(): void {
     if (this._touchScrubReady) return;
@@ -270,10 +270,10 @@ export class EmuContributionHeatmap extends HTMLElement {
     grid.addEventListener('touchend', end);
     grid.addEventListener('touchcancel', end);
 
-    // —— 阻止触屏点击后的合成 mouseenter 触发 emu-tooltip ——
+    // —— 阻止触屏点击后的合成 mouseenter 触发 uem-tooltip ——
     // mouseenter 不冒泡也不参与捕获阶段传播，无法在 grid 层面直接拦截子元素
     // 的 mouseenter 事件。因此改用 CSS pointer-events 方案：触屏操作后给 grid
-    // 添加 [data-touch-suppress] 属性，该属性通过 CSS 使内部所有 emu-tooltip
+    // 添加 [data-touch-suppress] 属性，该属性通过 CSS 使内部所有 uem-tooltip
     // 的 wrapper 的 pointer-events 变为 none，合成 mouse 事件到达时 wrapper
     // 不响应，mouseenter 不会触发。500ms 后自动移除属性恢复桌面端 hover。
     let suppressTimer: ReturnType<typeof setTimeout> | null = null;
@@ -290,12 +290,12 @@ export class EmuContributionHeatmap extends HTMLElement {
     if (!document.getElementById('heatmap-touch-suppress-style')) {
       const style = document.createElement('style');
       style.id = 'heatmap-touch-suppress-style';
-      // 当 grid 带有 data-touch-suppress 属性时，内部 emu-tooltip 的
+      // 当 grid 带有 data-touch-suppress 属性时，内部 uem-tooltip 的
       // group/tooltip 包裹 div 的 pointer-events 设为 none，阻止合成
       // mouseenter 触发 tooltip 显示。格子本身的 pointer-events 不受
       // 影响，长按拖动的 touchstart/touchmove 仍然正常命中。
       style.textContent = `
-        [data-touch-suppress] emu-tooltip > .group\\/tooltip {
+        [data-touch-suppress] uem-tooltip > .group\\/tooltip {
           pointer-events: none !important;
         }
       `;
@@ -328,7 +328,7 @@ export class EmuContributionHeatmap extends HTMLElement {
     body.className = 'p-0.5 select-none';
     tip.appendChild(body);
 
-    const dialog = this.querySelector('emu-float dialog') || this;
+    const dialog = this.querySelector('uem-float dialog') || this;
     dialog.appendChild(tip);
 
     this._touchTip = tip;
@@ -602,7 +602,7 @@ export class EmuContributionHeatmap extends HTMLElement {
           // manual-touch：桌面端保留 hover 气泡；移动端禁用内置触摸，改由下方长按拖动控制器统一驱动
           colCellsHtml += `
             <div class="w-[20px] h-[20px] relative flex-shrink-0 flex items-center justify-center">
-              <emu-tooltip manual-touch style="display: flex; width: 20px; height: 20px; align-items: center; justify-content: center;">
+              <uem-tooltip manual-touch style="display: flex; width: 20px; height: 20px; align-items: center; justify-content: center;">
                 <div
                   class="w-[20px] h-[20px] rounded-[2px] ${bgClasses[level]} cursor-pointer transition-all duration-200"
                   data-date="${dateStr}"
@@ -610,7 +610,7 @@ export class EmuContributionHeatmap extends HTMLElement {
                 <div slot="content" class="min-w-[180px] p-0.5 select-none">
                   ${this.cellTooltipHTML(dateStr)}
                 </div>
-              </emu-tooltip>
+              </uem-tooltip>
             </div>
           `;
         }
@@ -652,4 +652,4 @@ export class EmuContributionHeatmap extends HTMLElement {
   }
 }
 
-customElements.define('emu-contribution-heatmap', EmuContributionHeatmap);
+customElements.define('uem-contribution-heatmap', UemContributionHeatmap);

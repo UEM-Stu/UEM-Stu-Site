@@ -1,5 +1,5 @@
 /**
- * <emu-tooltip> 通用气泡提示组件
+ * <uem-tooltip> 通用气泡提示组件
  * 
  * 属性：
  * - text: 简短的提示文本（可选，若不需要复杂的富文本，可以直接设置此属性）
@@ -22,7 +22,7 @@ if (typeof window !== 'undefined') {
   window.addEventListener('touchend', markTouch, { capture: true, passive: true });
 }
 
-export class EmuTooltip extends HTMLElement {
+export class UemTooltip extends HTMLElement {
   connectedCallback() {
     this.render();
   }
@@ -168,4 +168,4 @@ export class EmuTooltip extends HTMLElement {
   }
 }
 
-customElements.define('emu-tooltip', EmuTooltip);
+customElements.define('uem-tooltip', UemTooltip);

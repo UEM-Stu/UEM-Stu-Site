@@ -10,7 +10,7 @@ PRIVATE_KEY = os.environ.get("APP_PRIVATE_KEY", "")
 # 如果 PRIVATE_KEY 为空，会尝试读取该文件
 PRIVATE_KEY_PATH = ""
 
-ORG = os.environ.get("ORG", "EMU-Stu")
+ORG = os.environ.get("ORG", "UEM-Stu")
 
 # 计算默认的对比日期（东八区的昨天）
 tz_bj = timezone(timedelta(hours=8))

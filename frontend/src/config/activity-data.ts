@@ -19,11 +19,11 @@ import {
 
 /** 活动数据 JSON（运行时拉取） */
 export const ACTIVITIES_JSON_URL =
-  'https://cdn.jsdelivr.net/gh/EMU-Stu/EMU-Stu-Site@stats-data/activities.json';
+  'https://cdn.jsdelivr.net/gh/UEM-Stu/UEM-Stu-Site@stats-data/activities.json';
 
 /** 订阅源 .ics（Apple / Google / Outlook 长期订阅，自动回源刷新） */
 export const ACTIVITIES_ICS_WEBCAL =
-  'webcal://cdn.jsdelivr.net/gh/EMU-Stu/EMU-Stu-Site@stats-data/activities.ics';
+  'webcal://cdn.jsdelivr.net/gh/UEM-Stu/UEM-Stu-Site@stats-data/activities.ics';
 
 const CATEGORY_SET = new Set<string>(CATEGORY_ORDER);
 const LEVEL_SET = new Set<string>(['campus', 'college']);

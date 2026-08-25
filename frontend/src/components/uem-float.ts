@@ -1,5 +1,5 @@
 /**
- * <emu-float> 通用浮窗组件
+ * <uem-float> 通用浮窗组件
  *
  * 属性：
  * - max-width: 浮窗的最大宽度（默认 max-w-2xl，例如 max-w-3xl, max-w-4xl 等）
@@ -11,47 +11,47 @@
  * - close(): 关闭浮窗（自动恢复背景滚动）
  */
 
-const EMU_FLOAT_STYLE_ID = 'emu-float-styles';
+const UEM_FLOAT_STYLE_ID = 'uem-float-styles';
 
-function ensureEmuFloatStyles(): void {
-  if (document.getElementById(EMU_FLOAT_STYLE_ID)) return;
+function ensureUemFloatStyles(): void {
+  if (document.getElementById(UEM_FLOAT_STYLE_ID)) return;
   const style = document.createElement('style');
-  style.id = EMU_FLOAT_STYLE_ID;
+  style.id = UEM_FLOAT_STYLE_ID;
   style.textContent = `
     /* fill: backwards（而非 both）——动画结束后回退到基础样式 transform: none（关键字），
        而不是 fill-forwards 残留的 matrix(1,0,0,1,0,0)。后者虽视觉等同 none，却会让 dialog
        成为 position:fixed 后代的包含块，导致弹窗内 fixed 定位的 tooltip 坐标整体偏移。 */
-    emu-float dialog[open]:not([data-closing]) {
-      animation: emu-float-enter 0.28s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    uem-float dialog[open]:not([data-closing]) {
+      animation: uem-float-enter 0.28s cubic-bezier(0.16, 1, 0.3, 1) backwards;
     }
-    emu-float dialog[data-closing] {
-      animation: emu-float-leave 0.14s ease-in both;
+    uem-float dialog[data-closing] {
+      animation: uem-float-leave 0.14s ease-in both;
       pointer-events: none;
     }
-    @keyframes emu-float-enter {
+    @keyframes uem-float-enter {
       from { opacity: 0; transform: scale(0.94) translateY(12px); }
       to   { opacity: 1; transform: none; }
     }
-    @keyframes emu-float-leave {
+    @keyframes uem-float-leave {
       from { opacity: 1; transform: none; }
       to   { opacity: 0; transform: scale(0.94) translateY(8px); }
     }
-    emu-float dialog[open]::backdrop {
+    uem-float dialog[open]::backdrop {
       background: rgba(0, 0, 0, 0.48);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
     }
-    emu-float dialog[open]:not([data-closing])::backdrop {
-      animation: emu-backdrop-enter 0.28s ease forwards;
+    uem-float dialog[open]:not([data-closing])::backdrop {
+      animation: uem-backdrop-enter 0.28s ease forwards;
     }
-    emu-float dialog[data-closing]::backdrop {
-      animation: emu-backdrop-leave 0.14s ease-in forwards;
+    uem-float dialog[data-closing]::backdrop {
+      animation: uem-backdrop-leave 0.14s ease-in forwards;
     }
-    @keyframes emu-backdrop-enter {
+    @keyframes uem-backdrop-enter {
       from { opacity: 0; }
       to   { opacity: 1; }
     }
-    @keyframes emu-backdrop-leave {
+    @keyframes uem-backdrop-leave {
       from { opacity: 1; }
       to   { opacity: 0; }
     }
@@ -59,7 +59,7 @@ function ensureEmuFloatStyles(): void {
   document.head.appendChild(style);
 }
 
-export class EmuFloat extends HTMLElement {
+export class UemFloat extends HTMLElement {
   private _dialog: HTMLDialogElement | null = null;
   private _titleElement: HTMLElement | null = null;
   private _closing = false;
@@ -75,7 +75,7 @@ export class EmuFloat extends HTMLElement {
   }
 
   connectedCallback() {
-    ensureEmuFloatStyles();
+    ensureUemFloatStyles();
     this.render();
   }
 
@@ -159,7 +159,7 @@ export class EmuFloat extends HTMLElement {
     // 创建底层的 <dialog> 元素
     const dialog = document.createElement('dialog');
     dialog.className = `bg-[#f5f6f8] dark:bg-[#151718] text-on-surface p-0 shadow-2xl ${maxWidthAttr} w-[90%] md:w-full rounded-2xl border border-outline/10 dark:border-outline-variant/10 focus:outline-none overflow-hidden`;
-    dialog.dataset.emu = '1';
+    dialog.dataset.uem = '1';
     this._dialog = dialog;
 
     // 1. 右上角通用关闭按钮（固定于浮窗右上角，不随内容滚动）
@@ -206,7 +206,7 @@ export class EmuFloat extends HTMLElement {
     // 4. 页脚团队标识
     const footer = document.createElement('div');
     footer.className = 'text-center w-full mt-6 pt-4 border-t border-outline-variant/10';
-    footer.innerHTML = '<p class="text-[10px] text-on-surface-variant/60 font-mono">Powered by EMU-Stu 开源技术组织</p>';
+    footer.innerHTML = '<p class="text-[10px] text-on-surface-variant/60 font-mono">Powered by UEM-Stu 开源技术组织</p>';
     wrapper.appendChild(footer);
 
     scrollArea.appendChild(wrapper);
@@ -235,4 +235,4 @@ export class EmuFloat extends HTMLElement {
   }
 }
 
-customElements.define('emu-float', EmuFloat);
+customElements.define('uem-float', UemFloat);

@@ -97,7 +97,7 @@ body {
   /*
    * 注意：不要在 body 上设置 overflow-x: hidden。
    * 一旦设置，浏览器会把 body 的 overflow-y 隐式计算为 auto，使 body 成为滚动容器，
-   * 从而破坏其直接子元素 <emu-header> 的 position: sticky 粘顶效果。
+   * 从而破坏其直接子元素 <uem-header> 的 position: sticky 粘顶效果。
    * 水平防溢出统一交给 html 处理即可。
    */
 }
@@ -156,12 +156,12 @@ dialog:not([open]) {
   to   { opacity: 1; }
 }
 
-/* 仅对未使用自定义动画的 dialog 应用全局淡入（[data-emu] 组件自行处理动画） */
-dialog[open]:not([data-emu]) {
+/* 仅对未使用自定义动画的 dialog 应用全局淡入（[data-uem] 组件自行处理动画） */
+dialog[open]:not([data-uem]) {
   animation: dialog-fade-in 0.15s ease-out forwards;
 }
 
-dialog[open]:not([data-emu])::backdrop {
+dialog[open]:not([data-uem])::backdrop {
   background: rgba(0, 0, 0, 0.5);
   animation: backdrop-fade-in 0.15s ease-out forwards;
 }

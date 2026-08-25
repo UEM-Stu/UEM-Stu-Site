@@ -1,9 +1,9 @@
 {
-  "name": "emu-stu-site-frontend",
+  "name": "uem-stu-site-frontend",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "EMU-Stu 应急管理大学开源技术组织官网 Web",
+  "description": "UEM-Stu 应急管理大学开源技术组织官网 Web",
   "scripts": {
     "fetch-docs": "node scripts/fetch-docs.mjs",
     "predev": "npm run fetch-docs",

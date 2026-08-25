@@ -1,8 +1,8 @@
 /**
- * <emu-blog> 技术博客展示组件
+ * <uem-blog> 技术博客展示组件
  *
  * 渲染“技术博客”区域，支持搜索、分类过滤以及平滑淡入淡出的分页。
- * 设计语言与 <emu-projects>、<emu-labs> 保持统一：
+ * 设计语言与 <uem-projects>、<uem-labs> 保持统一：
  *   - 相同的 section padding
  *   - 统一的标题栏布局（英文 subtitle + 中文 h2）
  *   - 相同的 hover 交互与微动效
@@ -10,7 +10,7 @@
  */
 import { BLOG_POSTS, BlogPost } from '@/config/blog';
 
-export class EmuBlog extends HTMLElement {
+export class UemBlog extends HTMLElement {
     /** 当前选中的分类 */
     private _currentCategory: string = '全部';
     /** 搜索关键词 */
@@ -247,7 +247,7 @@ export class EmuBlog extends HTMLElement {
             
             <div class="flex flex-col items-start md:items-end">
               <p class="text-xs md:text-sm text-on-surface-variant/80 dark:text-surface-variant/80 leading-relaxed text-left md:text-right max-w-md">
-                记录 EMU-Stu 的技术沉淀与研究心得，分享来自校园开源社区的第一手实战案例。
+                记录 UEM-Stu 的技术沉淀与研究心得，分享来自校园开源社区的第一手实战案例。
               </p>
             </div>
           </div>
@@ -290,11 +290,11 @@ export class EmuBlog extends HTMLElement {
             <div class="space-y-1">
               <h3 class="text-lg md:text-xl font-extrabold text-on-surface">欢迎分享你的文章</h3>
               <p class="text-sm text-on-surface-variant/80 dark:text-surface-variant/80 leading-relaxed max-w-2xl">
-                无论是在日常开发中折腾出的实战记录、比赛科研的避坑指南，还是对开源的想法，都欢迎向 EMU-Stu 投稿，把你的干货经验分享给更多小伙伴！
+                无论是在日常开发中折腾出的实战记录、比赛科研的避坑指南，还是对开源的想法，都欢迎向 UEM-Stu 投稿，把你的干货经验分享给更多小伙伴！
               </p>
             </div>
             <a
-              href="https://github.com/EMU-Stu/EMU-Stu-Blog"
+              href="https://github.com/UEM-Stu/UEM-Stu-Blog"
               target="_blank"
               class="flex-shrink-0 flex items-center gap-2 bg-primary hover:bg-primary/90 text-on-primary font-bold text-sm px-6 py-3 rounded-xl transition-all duration-300 transform active:scale-95 shadow-sm hover:shadow-md cursor-pointer font-mono"
             >
@@ -448,4 +448,4 @@ export class EmuBlog extends HTMLElement {
     }
 }
 
-customElements.define('emu-blog', EmuBlog);
+customElements.define('uem-blog', UemBlog);

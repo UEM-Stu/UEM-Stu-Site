@@ -1,5 +1,5 @@
 /**
- * <emu-projects> 优秀开源项目展示组件
+ * <uem-projects> 优秀开源项目展示组件
  *
  * 渲染“优秀开源项目展览”，从项目候选池中随机挑选并展示 4 个开源项目。
  * 支持点击“随机换一批”按钮来实时重新挑选并渲染，提供流畅的淡入淡出及图标旋转动效。
@@ -8,7 +8,7 @@ import { PROJECT_ITEMS, ProjectItem } from '@/config/projects';
 import { GITHUB_SVG_PATH } from '@/config/theme';
 
 
-export class EmuProjects extends HTMLElement {
+export class UemProjects extends HTMLElement {
   /** 当前正在展示的 4 个项目数据 */
   private _displayedProjects: ProjectItem[] = [];
 
@@ -77,7 +77,7 @@ export class EmuProjects extends HTMLElement {
               <svg class="w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor">
                 <path d="${GITHUB_SVG_PATH}"/>
               </svg>
-              <span class="font-mono text-sm tracking-tight text-on-surface-variant/80 flex-shrink-0">emu-stu /</span>
+              <span class="font-mono text-sm tracking-tight text-on-surface-variant/80 flex-shrink-0">uem-stu /</span>
               <span class="font-mono font-bold text-primary group-hover:underline truncate" title="${project.name}">${project.name}</span>
             </div>
             
@@ -128,8 +128,8 @@ export class EmuProjects extends HTMLElement {
                 </button>
               </div>
               <h2 class="font-mono text-3xl md:text-5xl font-extrabold text-on-surface tracking-tight leading-none mb-2 select-all">
-                <a href="https://github.com/emu-stu" target="_blank" class="inline-flex items-center gap-2 text-on-surface hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 group/gh">
-                  github.com/emu-stu
+                <a href="https://github.com/uem-stu" target="_blank" class="inline-flex items-center gap-2 text-on-surface hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 group/gh">
+                  github.com/uem-stu
                   <span class="material-symbols-outlined text-[0.6em] opacity-0 -translate-x-1 group-hover/gh:opacity-100 group-hover/gh:translate-x-0 transition-all duration-300">north_east</span>
                 </a>
               </h2>
@@ -158,7 +158,7 @@ export class EmuProjects extends HTMLElement {
               随机换一批
             </button>
             <a
-              href="https://github.com/EMU-Stu"
+              href="https://github.com/UEM-Stu"
               target="_blank"
               class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-on-primary font-label-md text-label-md px-6 py-3 rounded-xl transition-all duration-300 transform active:scale-95 shadow-sm hover:shadow-md cursor-pointer"
             >
@@ -168,7 +168,7 @@ export class EmuProjects extends HTMLElement {
           </div>
 
           <!-- 组织整体活跃热力图弹窗组件挂载 -->
-          <emu-contribution-heatmap></emu-contribution-heatmap>
+          <uem-contribution-heatmap></uem-contribution-heatmap>
         </div>
       </section>
     `;
@@ -179,7 +179,7 @@ export class EmuProjects extends HTMLElement {
    */
   private async loadCommitStats(): Promise<void> {
     try {
-      const response = await fetch('https://cdn.jsdelivr.net/gh/EMU-Stu/EMU-Stu-Site@stats-data/stats.json', { cache: 'no-store' });
+      const response = await fetch('https://cdn.jsdelivr.net/gh/UEM-Stu/UEM-Stu-Site@stats-data/stats.json', { cache: 'no-store' });
       if (!response.ok) {
         throw new Error(`Failed to fetch stats: ${response.status}`);
       }
@@ -220,7 +220,7 @@ export class EmuProjects extends HTMLElement {
 
           statsSpan.innerHTML = `
             · 近一周新增代码 <span class="text-emerald-500 font-semibold font-mono">+${formattedAdditions}</span> 行
-            <emu-tooltip style="vertical-align: -0.125em;">
+            <uem-tooltip style="vertical-align: -0.125em;">
               <span class="material-symbols-outlined select-none align-middle cursor-help text-[15px] text-on-surface-variant/50 hover:text-primary transition-colors duration-200 ml-0.5 relative top-[1px]">help</span>
               <div slot="content" class="min-w-[240px] select-none">
                 <span class="block font-bold text-on-surface mb-2 text-xs">代码变更统计</span>
@@ -238,7 +238,7 @@ export class EmuProjects extends HTMLElement {
                   </a>
                 </span>
               </div>
-            </emu-tooltip>
+            </uem-tooltip>
           `;
           statsSpan.style.display = 'inline';
         }
@@ -286,7 +286,7 @@ export class EmuProjects extends HTMLElement {
     const viewBtn = this.querySelector('#view-heatmap-btn');
     viewBtn?.addEventListener('click', (e) => {
       e.preventDefault();
-      const heatmap = this.querySelector<any>('emu-contribution-heatmap');
+      const heatmap = this.querySelector<any>('uem-contribution-heatmap');
       if (heatmap) {
         heatmap.open();
       }
@@ -294,4 +294,4 @@ export class EmuProjects extends HTMLElement {
   }
 }
 
-customElements.define('emu-projects', EmuProjects);
+customElements.define('uem-projects', UemProjects);

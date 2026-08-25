@@ -1,5 +1,5 @@
 /**
- * <emu-labs> 实验室介绍展示组件
+ * <uem-labs> 实验室介绍展示组件
  *
  * 渲染"实验室介绍"区域，展示各实验室信息。
  * 
@@ -10,7 +10,7 @@
  */
 import { LAB_ITEMS, LabItem } from '@/config/labs';
 
-export class EmuLabs extends HTMLElement {
+export class UemLabs extends HTMLElement {
   /** 响应式尺寸监听器 */
   private _resizeObserver: ResizeObserver | null = null;
 
@@ -282,4 +282,4 @@ export class EmuLabs extends HTMLElement {
   }
 }
 
-customElements.define('emu-labs', EmuLabs);
+customElements.define('uem-labs', UemLabs);

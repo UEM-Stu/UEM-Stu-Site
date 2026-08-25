@@ -24,7 +24,7 @@ export const STANDALONE_PAGES = [
 ] as const satisfies readonly { label: string; path: string; href: string }[];
 
 /** 本站实现的博客文章链接 */
-export const WEBSITE_BLOG_URL = 'https://github.com/EMU-Stu/EMU-Stu-Site';
+export const WEBSITE_BLOG_URL = 'https://github.com/UEM-Stu/UEM-Stu-Site';
 
 /** 页脚链接配置 */
 export const FOOTER_LINKS = {
