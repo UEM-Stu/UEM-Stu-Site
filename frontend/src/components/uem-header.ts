@@ -1,12 +1,12 @@
 /**
- * <emu-header> 顶部导航栏组件
+ * <uem-header> 顶部导航栏组件
  *
  * 包含品牌 Logo、导航链接、CTA 按钮和移动端菜单
  */
-import { LOGO_URL, EMU_STU_NAME, GITHUB_SVG_PATH } from '@/config/theme';
+import { LOGO_URL, UEM_STU_NAME, GITHUB_SVG_PATH } from '@/config/theme';
 import { NAV_LINKS, STANDALONE_PAGES } from '@/config/navigation';
 
-export class EmuHeader extends HTMLElement {
+export class UemHeader extends HTMLElement {
   /** 移动端菜单是否展开 */
   private _menuOpen = false;
 
@@ -142,12 +142,12 @@ export class EmuHeader extends HTMLElement {
           <!-- 品牌 -->
           <div class="flex items-center gap-3 cursor-pointer" onclick="${logoOnClick}">
             <img
-              alt="EMU-Stu Logo"
+              alt="UEM-Stu Logo"
               class="h-12 w-auto object-contain transition-transform duration-300 hover:rotate-12"
               src="${LOGO_URL}"
             >
             <span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim tracking-tight">
-              ${EMU_STU_NAME}
+              ${UEM_STU_NAME}
             </span>
           </div>
  
@@ -188,7 +188,7 @@ export class EmuHeader extends HTMLElement {
           <!-- 操作按钮 -->
           <div class="flex items-center gap-4">
             <a
-              href="https://github.com/EMU-Stu"
+              href="https://github.com/UEM-Stu"
               target="_blank"
               class="flex bg-gradient-to-r from-primary to-[#003380] hover:from-[#003380] hover:to-primary text-on-primary font-label-md text-label-md p-2.5 md:px-5 md:py-2.5 rounded-xl transition-all duration-300 transform hover:scale-[1.03] shadow-md hover:shadow-lg items-center gap-2"
               id="header-github-btn"
@@ -238,7 +238,7 @@ export class EmuHeader extends HTMLElement {
 
             <div class="pt-4 mt-2 border-t border-outline-variant/30">
               <a
-                href="https://github.com/EMU-Stu"
+                href="https://github.com/UEM-Stu"
                 target="_blank"
                 class="w-full flex justify-center items-center gap-2 bg-gradient-to-r from-primary to-[#003380] text-on-primary font-label-md text-label-md px-6 py-3 rounded-xl transition-all shadow-md"
                 id="mobile-header-github-btn"
@@ -281,4 +281,4 @@ export class EmuHeader extends HTMLElement {
   }
 }
 
-customElements.define('emu-header', EmuHeader);
+customElements.define('uem-header', UemHeader);

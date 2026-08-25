@@ -1,10 +1,10 @@
-// 构建 / 开发前自动拉取文档仓库 EMU-Stu-Blog 到 frontend/docs。
+// 构建 / 开发前自动拉取文档仓库 UEM-Stu-Blog 到 frontend/docs。
 // 文档不随主仓库提交(.gitignore 已忽略 frontend/docs),每次构建现拉最新。
 // 由 package.json 的 predev / prebuild 钩子自动调用,本地与 CI 行为一致。
 import { existsSync, rmSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 
-const REPO = 'https://github.com/EMU-Stu/EMU-Stu-Blog.git';
+const REPO = 'https://github.com/UEM-Stu/UEM-Stu-Blog.git';
 const BRANCH = 'main';
 const DIR = 'docs';
 

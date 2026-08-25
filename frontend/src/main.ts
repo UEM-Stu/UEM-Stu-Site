@@ -7,25 +7,25 @@
 import './styles/global.css';
 
 // Web Components（导入即自动注册）
-import './components/emu-header';
-import './components/emu-float';
-import './components/emu-lightbox';
-import './components/emu-tooltip';
-import './components/emu-select';
-import './components/emu-hero';
-import './components/emu-services';
-import './components/emu-projects';
-import './components/emu-contribution-heatmap';
-import './components/emu-activity-calendar';
-import './components/emu-labs';
-import './components/emu-blog';
-import './components/emu-article';
-import './components/emu-footer';
-import './components/emu-easter-egg';
+import './components/uem-header';
+import './components/uem-float';
+import './components/uem-lightbox';
+import './components/uem-tooltip';
+import './components/uem-select';
+import './components/uem-hero';
+import './components/uem-services';
+import './components/uem-projects';
+import './components/uem-contribution-heatmap';
+import './components/uem-activity-calendar';
+import './components/uem-labs';
+import './components/uem-blog';
+import './components/uem-article';
+import './components/uem-footer';
+import './components/uem-easter-egg';
 
 // 开发环境提示
 if (import.meta.env.DEV) {
-    console.log('[EMU-Stu] 所有 Web Components 已注册');
+    console.log('[UEM-Stu] 所有 Web Components 已注册');
 }
 
 // 禁用移动端双指缩放和双击缩放

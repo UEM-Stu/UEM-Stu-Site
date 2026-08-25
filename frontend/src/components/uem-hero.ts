@@ -1,11 +1,11 @@
 /**
- * <emu-hero> Hero 横幅组件
+ * <uem-hero> Hero 横幅组件
  *
  * 全幅主视觉区域，包含背景图案、主标题、描述和 CTA 按钮
  */
 import { LOGO_URL } from '@/config/theme';
 
-export class EmuHero extends HTMLElement {
+export class UemHero extends HTMLElement {
     connectedCallback(): void {
         this.render();
         this.setupEventListeners();
@@ -41,7 +41,7 @@ export class EmuHero extends HTMLElement {
           <h2
             class="text-4xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-primary-fixed-dim to-white bg-clip-text text-transparent mb-8"
           >
-            EMU-Stu
+            UEM-Stu
           </h2>
           <p class="font-body-lg text-body-lg text-blue-100/80 max-w-2xl mb-12 text-lg md:text-xl leading-relaxed">
             面向实验室、开源项目与技术协作的学生组织。<br>一起构建项目、分享想法、共同成长。
@@ -109,4 +109,4 @@ export class EmuHero extends HTMLElement {
     }
 }
 
-customElements.define('emu-hero', EmuHero);
+customElements.define('uem-hero', UemHero);

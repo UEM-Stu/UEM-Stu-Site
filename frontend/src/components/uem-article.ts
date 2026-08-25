@@ -1,5 +1,5 @@
 /**
- * <emu-article> 技术博客文章阅读页组件
+ * <uem-article> 技术博客文章阅读页组件
  *
  * 提供沉浸式的文章阅读体验：
  *   - 左侧固定目录导航（桌面端），带滚动高亮追踪
@@ -20,7 +20,7 @@ import json from 'highlight.js/lib/languages/json';
 import bash from 'highlight.js/lib/languages/bash';
 import markdown from 'highlight.js/lib/languages/markdown';
 import { ARTICLES, BlogArticle, TOCItem } from '@/config/article';
-import { openLightbox } from './emu-lightbox';
+import { openLightbox } from './uem-lightbox';
 
 // 按需注册常用语言
 hljs.registerLanguage('javascript', javascript);
@@ -120,7 +120,7 @@ export function parseArticleContent(content: string): string {
     return marked.parse(content) as string;
 }
 
-export class EmuArticle extends HTMLElement {
+export class UemArticle extends HTMLElement {
     private _toc: TOCItem[] = [];
     private _activeId: string = '';
     private _article: BlogArticle | null = null;
@@ -144,7 +144,7 @@ export class EmuArticle extends HTMLElement {
                 this._setupMobileDrawer();
             }
         } catch (error) {
-            console.error('[emu-article] Error in connectedCallback:', error);
+            console.error('[uem-article] Error in connectedCallback:', error);
         }
     }
 
@@ -414,7 +414,7 @@ export class EmuArticle extends HTMLElement {
                 <div class="pt-6 border-t border-outline-variant/15 text-xs text-on-surface-variant/60 dark:text-surface-variant/60">
                   <p class="mb-2 leading-relaxed">想要分享你的研究成果或技术实战？欢迎投稿！</p>
                   <a
-                    href="https://github.com/EMU-Stu/EMU-Stu-Blog"
+                    href="https://github.com/UEM-Stu/UEM-Stu-Blog"
                     target="_blank"
                     class="inline-flex items-center gap-1 text-primary dark:text-primary-fixed-dim hover:underline font-semibold"
                   >
@@ -483,7 +483,7 @@ export class EmuArticle extends HTMLElement {
             });
             await mermaid.run({ nodes: mermaidEls });
         } catch (e) {
-            console.warn('[emu-article] mermaid render error:', e);
+            console.warn('[uem-article] mermaid render error:', e);
         }
     }
 
@@ -926,4 +926,4 @@ export class EmuArticle extends HTMLElement {
     }
 }
 
-customElements.define('emu-article', EmuArticle);
+customElements.define('uem-article', UemArticle);

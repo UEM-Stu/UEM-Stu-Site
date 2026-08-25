@@ -18,7 +18,7 @@ export const PROJECT_ITEMS: readonly ProjectItem[] = [
     languages: ['C++', 'Python'],
     stars: 48,
     color: '#3572A5',
-    href: 'https://github.com/EMU-Stu/EmergencyTeleoperatedRobotSystem-Jetson'
+    href: 'https://github.com/UEM-Stu/EmergencyTeleoperatedRobotSystem-Jetson'
   },
   {
     name: 'EmergencyTeleoperatedRobotSystem-Unity',
@@ -26,7 +26,7 @@ export const PROJECT_ITEMS: readonly ProjectItem[] = [
     languages: ['C#'],
     stars: 62,
     color: '#178600',
-    href: 'https://github.com/EMU-Stu/EmergencyTeleoperatedRobotSystem-Unity'
+    href: 'https://github.com/UEM-Stu/EmergencyTeleoperatedRobotSystem-Unity'
   },
   {
     name: 'skills',
@@ -34,23 +34,23 @@ export const PROJECT_ITEMS: readonly ProjectItem[] = [
     languages: ['Markdown'],
     stars: 128,
     color: '#083fa6',
-    href: 'https://github.com/EMU-Stu/skills'
+    href: 'https://github.com/UEM-Stu/skills'
   },
   {
-    name: 'EMU-Stu-Site',
-    description: 'EMU-Stu 官网源码。',
+    name: 'UEM-Stu-Site',
+    description: 'UEM-Stu 官网源码。',
     languages: ['TypeScript', 'HTML', 'CSS'],
     stars: 35,
     color: '#3178c6',
-    href: 'https://github.com/EMU-Stu/EMU-Stu-Site'
+    href: 'https://github.com/UEM-Stu/UEM-Stu-Site'
   },
   {
-    name: 'EMU-Stu-Blog',
-    description: 'EMU-Stu 技术博客的内容仓库，包含所有的文章 Markdown 源文件与相关静态资源，欢迎你的投稿。',
+    name: 'UEM-Stu-Blog',
+    description: 'UEM-Stu 技术博客的内容仓库，包含所有的文章 Markdown 源文件与相关静态资源，欢迎你的投稿。',
     languages: ['Markdown'],
     stars: 28,
     color: '#083fa6',
-    href: 'https://github.com/EMU-Stu/EMU-Stu-Blog'
+    href: 'https://github.com/UEM-Stu/UEM-Stu-Blog'
   },
   {
     name: 'CUEDC-2024-Drone-code',
@@ -58,7 +58,7 @@ export const PROJECT_ITEMS: readonly ProjectItem[] = [
     languages: ['C'],
     stars: 56,
     color: '#555555',
-    href: 'https://github.com/EMU-Stu/CUEDC-2024-Drone-code'
+    href: 'https://github.com/UEM-Stu/CUEDC-2024-Drone-code'
   },
   {
     name: 'IOT-lab-web',
@@ -66,6 +66,6 @@ export const PROJECT_ITEMS: readonly ProjectItem[] = [
     languages: ['TypeScript', 'CSS', 'JavaScript'],
     stars: 0,
     color: '#3178c6',
-    href: 'https://github.com/EMU-Stu/IOT-lab-web'
+    href: 'https://github.com/UEM-Stu/IOT-lab-web'
   }
 ] as const;

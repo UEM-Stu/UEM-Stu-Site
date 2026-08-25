@@ -1,12 +1,12 @@
 /**
- * <emu-footer> 页脚组件
+ * <uem-footer> 页脚组件
  *
  * 包含品牌信息、链接列表、社交图标和版权信息
  */
-import { LOGO_URL, EMU_STU_NAME, EMU_STU_NAME_CN, EMU_STU_SLOGAN } from '@/config/theme';
+import { LOGO_URL, UEM_STU_NAME, UEM_STU_NAME_CN, UEM_STU_SLOGAN } from '@/config/theme';
 import { FOOTER_LINKS } from '@/config/navigation';
 
-export class EmuFooter extends HTMLElement {
+export class UemFooter extends HTMLElement {
     connectedCallback(): void {
         this.render();
     }
@@ -53,16 +53,16 @@ export class EmuFooter extends HTMLElement {
             <div class="md:col-span-2">
               <div class="flex items-center gap-3 mb-4">
                 <img
-                  alt="EMU-Stu Logo"
+                  alt="UEM-Stu Logo"
                   class="h-8 w-auto object-contain opacity-60 dark:opacity-80 transition-opacity hover:opacity-100"
                   src="${LOGO_URL}"
                 >
                 <span class="font-headline-md text-lg font-bold text-on-surface dark:text-surface-bright tracking-tight">
-                  ${EMU_STU_NAME}
+                  ${UEM_STU_NAME}
                 </span>
               </div>
               <p class="font-body-md text-sm text-on-surface-variant dark:text-surface-variant max-w-sm mb-6 leading-relaxed">
-                ${EMU_STU_NAME_CN}<br>${EMU_STU_SLOGAN}
+                ${UEM_STU_NAME_CN}<br>${UEM_STU_SLOGAN}
               </p>
               <div class="flex gap-4">
                 <a
@@ -75,7 +75,7 @@ export class EmuFooter extends HTMLElement {
                 </a>
                 <a
                   class="w-10 h-10 rounded-xl bg-surface-container-high dark:bg-surface-container-highest flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary dark:hover:bg-primary-fixed dark:hover:text-on-primary-fixed transform hover:scale-105 transition-all duration-300"
-                  href="https://github.com/EMU-Stu"
+                  href="https://github.com/UEM-Stu"
                   target="_blank"
                   aria-label="GitHub"
                 >
@@ -83,7 +83,7 @@ export class EmuFooter extends HTMLElement {
                 </a>
                 <a
                   class="w-10 h-10 rounded-xl bg-surface-container-high dark:bg-surface-container-highest flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary dark:hover:bg-primary-fixed dark:hover:text-on-primary-fixed transform hover:scale-105 transition-all duration-300"
-                  href="https://github.com/EMU-Stu/EMU-Stu-Site"
+                  href="https://github.com/UEM-Stu/UEM-Stu-Site"
                   target="_blank"
                   aria-label="分享"
                 >
@@ -104,7 +104,7 @@ export class EmuFooter extends HTMLElement {
           <!-- 下半部分：版权 + 底部导航 -->
           <div class="flex flex-col md:flex-row justify-between items-center gap-6">
             <p class="font-body-sm text-sm text-on-surface-variant dark:text-surface-variant">
-              © ${new Date().getFullYear()} ${EMU_STU_NAME_CN}.
+              © ${new Date().getFullYear()} ${UEM_STU_NAME_CN}.
             </p>
             <nav class="flex flex-wrap justify-center gap-6" aria-label="页脚导航">
               ${bottomLinksHtml}
@@ -116,4 +116,4 @@ export class EmuFooter extends HTMLElement {
     }
 }
 
-customElements.define('emu-footer', EmuFooter);
+customElements.define('uem-footer', UemFooter);

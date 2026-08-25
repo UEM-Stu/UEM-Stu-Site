@@ -1,11 +1,11 @@
-# EMU-Stu-Site
+# UEM-Stu-Site
 
-应急管理大学开源技术组织（EMU-Stu）源码网站仓库。
+应急管理大学开源技术组织（UEM-Stu）源码网站仓库。
 
 ## 项目结构
 
 ```text
-EMU-Stu-Site/
+UEM-Stu-Site/
 ├── frontend/              # 前端项目
 │   ├── src/
 │   │   ├── components/    # 页面中使用的 Web Components 组件
@@ -43,23 +43,23 @@ npm run build    # 打包静态资源
 
 | 组件标签 | 对应文件 | 功能描述 |
 |------|------|------|
-| `<emu-header>` | `emu-header.ts` | 顶部导航栏 |
-| `<emu-hero>` | `emu-hero.ts` | 首页大图横幅 |
-| `<emu-services>` | `emu-services.ts` | 服务卡片展示网格 |
-| `<emu-projects>` | `emu-projects.ts` | 开源项目卡片列表 |
-| `<emu-labs>` | `emu-labs.ts` | 实验室介绍展示 |
-| `<emu-blog>` | `emu-blog.ts` | 博客文章列表与展示 |
-| `<emu-article>` | `emu-article.ts` | 文章内容渲染容器 |
-| `<emu-lightbox>` | `emu-lightbox.ts` | 图片放大预览灯箱 |
-| `<emu-float>` | `emu-float.ts` | 通用悬浮/弹窗组件 |
-| `<emu-tooltip>` | `emu-tooltip.ts` | 气泡提示，支持手动控制与边缘避让 |
-| `<emu-contribution-heatmap>` | `emu-contribution-heatmap.ts` | 代码提交热力图，支持移动端长按滚动与点击穿透 |
-| `<emu-easter-egg>` | `emu-easter-egg.ts` | 隐藏彩蛋逻辑 |
-| `<emu-footer>` | `emu-footer.ts` | 底部版权与链接 |
+| `<uem-header>` | `uem-header.ts` | 顶部导航栏 |
+| `<uem-hero>` | `uem-hero.ts` | 首页大图横幅 |
+| `<uem-services>` | `uem-services.ts` | 服务卡片展示网格 |
+| `<uem-projects>` | `uem-projects.ts` | 开源项目卡片列表 |
+| `<uem-labs>` | `uem-labs.ts` | 实验室介绍展示 |
+| `<uem-blog>` | `uem-blog.ts` | 博客文章列表与展示 |
+| `<uem-article>` | `uem-article.ts` | 文章内容渲染容器 |
+| `<uem-lightbox>` | `uem-lightbox.ts` | 图片放大预览灯箱 |
+| `<uem-float>` | `uem-float.ts` | 通用悬浮/弹窗组件 |
+| `<uem-tooltip>` | `uem-tooltip.ts` | 气泡提示，支持手动控制与边缘避让 |
+| `<uem-contribution-heatmap>` | `uem-contribution-heatmap.ts` | 代码提交热力图，支持移动端长按滚动与点击穿透 |
+| `<uem-easter-egg>` | `uem-easter-egg.ts` | 隐藏彩蛋逻辑 |
+| `<uem-footer>` | `uem-footer.ts` | 底部版权与链接 |
 
 ## 自动部署
 
-本项目使用 GitHub Actions 自动编译并发布。当代码合并入 `main` 分支时，工作流会完成编译，并将打包后的 `dist` 目录推送到静态网站托管仓库 [emu-stu.github.io](https://github.com/EMU-Stu/emu-stu.github.io)。
+本项目使用 GitHub Actions 自动编译并发布。当代码合并入 `main` 分支时，工作流会完成编译，并将打包后的 `dist` 目录推送到静态网站托管仓库 [uem-stu.github.io](https://github.com/UEM-Stu/uem-stu.github.io)。
 
 ### 部署流程
 
@@ -69,7 +69,7 @@ sequenceDiagram
     actor Developer as 开发者 
     participant Actions as Github Actions
     participant GHApp as GitHub App 认证服务
-    participant TargetRepo as Github Pages 仓库 (emu-stu.github.io)
+    participant TargetRepo as Github Pages 仓库 (uem-stu.github.io)
 
     Developer->>Actions: git push 到 main 分支
     
@@ -82,7 +82,7 @@ sequenceDiagram
     GHApp-->>Actions: 返回具备 write 权限的临时访问 Token
     deactivate GHApp
     
-    Actions->>TargetRepo: push frontend/dist 静态资源到 emu-stu.github.io 仓库
+    Actions->>TargetRepo: push frontend/dist 静态资源到 uem-stu.github.io 仓库
     deactivate Actions
     activate TargetRepo
     Note over TargetRepo: 自动触发 GitHub Pages 构建与发布

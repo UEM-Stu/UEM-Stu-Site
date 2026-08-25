@@ -1,5 +1,5 @@
 /**
- * <emu-lightbox> 全局图片查看器（单例）
+ * <uem-lightbox> 全局图片查看器（单例）
  *
  * 点击放大任意图片，支持：
  *  - 双指捏合缩放（聚焦两指中点）
@@ -10,18 +10,18 @@
  * 基于原生 <dialog> 顶层（top layer）渲染，可覆盖其它 <dialog> 弹窗（如校历浮窗）。
  *
  * 用法：
- *   import { openLightbox } from './emu-lightbox';
+ *   import { openLightbox } from './uem-lightbox';
  *   openLightbox(img.src, img.alt);
  */
 
-const STYLE_ID = 'emu-lightbox-styles';
+const STYLE_ID = 'uem-lightbox-styles';
 
 function ensureStyles(): void {
     if (document.getElementById(STYLE_ID)) return;
     const style = document.createElement('style');
     style.id = STYLE_ID;
     style.textContent = `
-      .emu-lightbox-dialog {
+      .uem-lightbox-dialog {
         padding: 0;
         margin: 0;
         border: none;
@@ -35,7 +35,7 @@ function ensureStyles(): void {
         /* 关闭时用较快的淡出 */
         transition: opacity 0.15s ease-in, overlay 0.3s allow-discrete, display 0.3s allow-discrete;
       }
-      .emu-lightbox-dialog[open] {
+      .uem-lightbox-dialog[open] {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -44,36 +44,36 @@ function ensureStyles(): void {
         transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), overlay 0.3s allow-discrete, display 0.3s allow-discrete;
       }
       @starting-style {
-        .emu-lightbox-dialog[open] { opacity: 0; }
+        .uem-lightbox-dialog[open] { opacity: 0; }
       }
-      .emu-lightbox-dialog::backdrop {
+      .uem-lightbox-dialog::backdrop {
         background: rgba(0, 0, 0, 0.78);
         -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
         opacity: 0;
         transition: opacity 0.15s ease-in, overlay 0.3s allow-discrete, display 0.3s allow-discrete;
       }
-      .emu-lightbox-dialog[open]::backdrop {
+      .uem-lightbox-dialog[open]::backdrop {
         opacity: 1;
         transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), overlay 0.3s allow-discrete, display 0.3s allow-discrete;
       }
       @starting-style {
-        .emu-lightbox-dialog[open]::backdrop { opacity: 0; }
+        .uem-lightbox-dialog[open]::backdrop { opacity: 0; }
       }
-      .emu-lightbox-img-wrap {
+      .uem-lightbox-img-wrap {
         display: flex;
         align-items: center;
         justify-content: center;
         transform: scale(0.88);
         transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      .emu-lightbox-dialog[open] .emu-lightbox-img-wrap {
+      .uem-lightbox-dialog[open] .uem-lightbox-img-wrap {
         transform: scale(1);
       }
       @starting-style {
-        .emu-lightbox-dialog[open] .emu-lightbox-img-wrap { transform: scale(0.88); }
+        .uem-lightbox-dialog[open] .uem-lightbox-img-wrap { transform: scale(0.88); }
       }
-      .emu-lightbox-img {
+      .uem-lightbox-img {
         max-width: 92vw;
         max-height: 92dvh;
         width: auto;
@@ -88,7 +88,7 @@ function ensureStyles(): void {
         will-change: transform;
         cursor: default;
       }
-      .emu-lightbox-close {
+      .uem-lightbox-close {
         position: fixed;
         top: 20px;
         right: 20px;
@@ -105,12 +105,12 @@ function ensureStyles(): void {
         transition: background 0.2s ease;
         z-index: 1;
       }
-      .emu-lightbox-close:hover { background: rgba(255, 255, 255, 0.3); }
+      .uem-lightbox-close:hover { background: rgba(255, 255, 255, 0.3); }
     `;
     document.head.appendChild(style);
 }
 
-export class EmuLightbox extends HTMLElement {
+export class UemLightbox extends HTMLElement {
     private _open: (src: string, alt: string) => void = () => {};
     private _close: () => void = () => {};
 
@@ -134,19 +134,19 @@ export class EmuLightbox extends HTMLElement {
         this.style.display = 'contents';
 
         const dialog = document.createElement('dialog');
-        dialog.className = 'emu-lightbox-dialog';
-        dialog.dataset.emu = '1';
+        dialog.className = 'uem-lightbox-dialog';
+        dialog.dataset.uem = '1';
 
         const closeBtn = document.createElement('button');
-        closeBtn.className = 'emu-lightbox-close';
+        closeBtn.className = 'uem-lightbox-close';
         closeBtn.setAttribute('aria-label', '关闭图片预览');
         closeBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size:28px;">close</span>';
 
         const imgWrap = document.createElement('div');
-        imgWrap.className = 'emu-lightbox-img-wrap';
+        imgWrap.className = 'uem-lightbox-img-wrap';
 
         const img = document.createElement('img');
-        img.className = 'emu-lightbox-img';
+        img.className = 'uem-lightbox-img';
         img.alt = '';
 
         imgWrap.appendChild(img);
@@ -318,14 +318,14 @@ export class EmuLightbox extends HTMLElement {
     }
 }
 
-customElements.define('emu-lightbox', EmuLightbox);
+customElements.define('uem-lightbox', UemLightbox);
 
-let _instance: EmuLightbox | null = null;
+let _instance: UemLightbox | null = null;
 
 /** 打开全局图片查看器（懒加载单例） */
 export function openLightbox(src: string, alt = ''): void {
     if (!_instance || !_instance.isConnected) {
-        _instance = document.createElement('emu-lightbox') as EmuLightbox;
+        _instance = document.createElement('uem-lightbox') as UemLightbox;
         document.body.appendChild(_instance);
     }
     _instance.open(src, alt);

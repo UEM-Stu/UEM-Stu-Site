@@ -37,7 +37,7 @@ jobs:
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
-          owner: emu-stu
+          owner: uem-stu
           permission-contents: write
 
       # 5. 下载历史数据 stats.json

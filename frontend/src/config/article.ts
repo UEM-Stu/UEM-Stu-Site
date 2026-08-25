@@ -34,7 +34,7 @@ export interface TOCItem {
 }
 
 /**
- * EMU 主站 article.ts 用手写 YAML 解析，date 通常是 string；
+ * UEM 主站 article.ts 用手写 YAML 解析，date 通常是 string；
  * 与 gray-matter 站点保持一致，兼容 Date / 带时间后缀的字符串。
  */
 function normalizeFrontmatterDate(raw: unknown): string {
@@ -49,9 +49,9 @@ function normalizeFrontmatterDate(raw: unknown): string {
 }
 
 /**
- * EMU 主站文章路由为 /article?slug=，兼容个人站 /blog/ 写法
+ * UEM 主站文章路由为 /article?slug=，兼容个人站 /blog/ 写法
  */
-function normalizeBlogInternalLinksForEmu(content: string): string {
+function normalizeBlogInternalLinksForUem(content: string): string {
   return content.replace(
     /\]\(\/blog\/([a-z0-9-]+)\)/gi,
     '](/article?slug=$1)',
@@ -117,7 +117,7 @@ function parseMarkdown(filePath: string, rawContent: string): BlogArticle {
 
   const finalExcerpt = metadata.excerpt || getExcerpt(content);
 
-  content = normalizeBlogInternalLinksForEmu(content);
+  content = normalizeBlogInternalLinksForUem(content);
   
   return {
     slug: metadata.slug || slug,
@@ -135,7 +135,7 @@ function parseMarkdown(filePath: string, rawContent: string): BlogArticle {
 }
 
 // 动态载入 docs/articles 文件夹下的所有 markdown 文章
-// (docs/ 由构建前的 scripts/fetch-docs.mjs 从 EMU-Stu-Blog 仓库拉取,文章统一放在子目录 articles/ 下)
+// (docs/ 由构建前的 scripts/fetch-docs.mjs 从 UEM-Stu-Blog 仓库拉取,文章统一放在子目录 articles/ 下)
 const markdownModules = import.meta.glob('../../docs/articles/*.md', { query: '?raw', eager: true });
 
 const parsedMarkdownArticles: BlogArticle[] = [];

@@ -1,5 +1,5 @@
 /**
- * <emu-activity-calendar> 校园活动日历组件
+ * <uem-activity-calendar> 校园活动日历组件
  *
  * 提供月 / 周 / 日三种视图浏览校园活动：
  * - 桌面默认月视图，移动端默认周视图
@@ -20,13 +20,13 @@ import {
 } from '@/config/activity';
 import { buildICS } from '@/config/activity-ics';
 import { ACTIVITIES_ICS_WEBCAL, loadActivities } from '@/config/activity-data';
-import { EmuFloat } from './emu-float';
-import { EmuSelect } from './emu-select';
+import { UemFloat } from './uem-float';
+import { UemSelect } from './uem-select';
 
 type ViewMode = 'month' | 'week' | 'day';
 type DataState = 'loading' | 'ready' | 'error';
 
-const STYLE_ID = 'emu-activity-calendar-styles';
+const STYLE_ID = 'uem-activity-calendar-styles';
 const WEEKDAY_FULL = ['日', '一', '二', '三', '四', '五', '六'];
 const WEEKDAY_HEAD = ['一', '二', '三', '四', '五', '六', '日']; // 周一为起始
 const MONTH_MAX_VISIBLE = 2;
@@ -100,7 +100,7 @@ function ensureStyles(): void {
   document.head.appendChild(style);
 }
 
-export class EmuActivityCalendar extends HTMLElement {
+export class UemActivityCalendar extends HTMLElement {
   private view: ViewMode = 'month';
   private current: Date = new Date();
   private selected: string = ymd(new Date());
@@ -217,9 +217,9 @@ export class EmuActivityCalendar extends HTMLElement {
             <div class="flex flex-wrap items-center justify-between gap-3">
               <div class="flex flex-wrap items-center gap-2 min-w-0">
                 <span class="text-[11px] font-semibold text-on-surface-variant/60 uppercase tracking-wider hidden md:inline shrink-0">学院</span>
-                <emu-select id="college-select" placeholder="全部学院" clearable aria-label="按学院筛选活动"></emu-select>
+                <uem-select id="college-select" placeholder="全部学院" clearable aria-label="按学院筛选活动"></uem-select>
                 <span class="text-[11px] font-semibold text-on-surface-variant/60 uppercase tracking-wider hidden md:inline shrink-0 ml-1">社团</span>
-                <emu-select id="club-select" placeholder="全部社团" clearable aria-label="按社团筛选活动"></emu-select>
+                <uem-select id="club-select" placeholder="全部社团" clearable aria-label="按社团筛选活动"></uem-select>
               </div>
               <div id="legend" class="flex flex-wrap items-center gap-1.5"></div>
             </div>
@@ -233,7 +233,7 @@ export class EmuActivityCalendar extends HTMLElement {
         </div>
 
         <!-- 订阅日历浮窗 -->
-        <emu-float title="订阅校园活动日历" subtitle="Subscribe" max-width="max-w-lg">
+        <uem-float title="订阅校园活动日历" subtitle="Subscribe" max-width="max-w-lg">
           <div class="w-full flex flex-col gap-5 text-left">
             <p class="text-sm text-on-surface-variant/80 leading-relaxed">
               订阅后，校园活动会自动出现在你的日历 App 里，后续新增或调整也会自动同步，无需重复导入。
@@ -276,7 +276,7 @@ export class EmuActivityCalendar extends HTMLElement {
               </button>
             </div>
           </div>
-        </emu-float>
+        </uem-float>
       </section>
     `;
   }
@@ -345,10 +345,10 @@ export class EmuActivityCalendar extends HTMLElement {
     });
 
     // 学院下拉框：一次性灌入选项，并监听选择变化（学院列表固定，故只设置一次 options）
-    const collegeSelect = this.querySelector<EmuSelect>('#college-select');
+    const collegeSelect = this.querySelector<UemSelect>('#college-select');
     if (collegeSelect) {
       collegeSelect.options = [...COLLEGES];
-      collegeSelect.addEventListener('emu-select-change', (e) => {
+      collegeSelect.addEventListener('uem-select-change', (e) => {
         const val = (e as CustomEvent<{ value: string | null }>).detail.value;
         this.selectedCollege = val;
         // 互斥：选了学院就清空社团
@@ -361,10 +361,10 @@ export class EmuActivityCalendar extends HTMLElement {
     }
 
     // 社团下拉框：同理
-    const clubSelect = this.querySelector<EmuSelect>('#club-select');
+    const clubSelect = this.querySelector<UemSelect>('#club-select');
     if (clubSelect) {
       clubSelect.options = [...CLUBS];
-      clubSelect.addEventListener('emu-select-change', (e) => {
+      clubSelect.addEventListener('uem-select-change', (e) => {
         const val = (e as CustomEvent<{ value: string | null }>).detail.value;
         this.selectedClub = val;
         // 互斥：选了社团就清空学院
@@ -424,9 +424,9 @@ export class EmuActivityCalendar extends HTMLElement {
 
   /** 让学院/社团下拉框的选中态与内部状态保持一致（互斥场景下程序化清除对方后调用） */
   private syncSelects(): void {
-    const cs = this.querySelector<EmuSelect>('#college-select');
+    const cs = this.querySelector<UemSelect>('#college-select');
     if (cs && cs.value !== this.selectedCollege) cs.value = this.selectedCollege;
-    const cl = this.querySelector<EmuSelect>('#club-select');
+    const cl = this.querySelector<UemSelect>('#club-select');
     if (cl && cl.value !== this.selectedClub) cl.value = this.selectedClub;
   }
 
@@ -789,7 +789,7 @@ export class EmuActivityCalendar extends HTMLElement {
 
   /* —— 订阅 / 导出 —— */
   private openSubscribe(): void {
-    this.querySelector<EmuFloat>('emu-float')?.showModal();
+    this.querySelector<UemFloat>('uem-float')?.showModal();
   }
 
   /** 复制订阅链接到剪贴板，并短暂反馈 */
@@ -841,4 +841,4 @@ export class EmuActivityCalendar extends HTMLElement {
   }
 }
 
-customElements.define('emu-activity-calendar', EmuActivityCalendar);
+customElements.define('uem-activity-calendar', UemActivityCalendar);

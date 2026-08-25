@@ -38,11 +38,11 @@ export function buildICS(activities: Activity[]): string {
   const lines: string[] = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//EMU-Stu//Campus Activity//CN',
+    'PRODID:-//UEM-Stu//Campus Activity//CN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'X-WR-CALNAME:校园活动',
-    'X-WR-CALDESC:EMU-Stu 校园活动日历订阅',
+    'X-WR-CALDESC:UEM-Stu 校园活动日历订阅',
     'X-WR-TIMEZONE:Asia/Shanghai',
     'REFRESH-INTERVAL;VALUE=DURATION:PT12H',
     'X-PUBLISHED-TTL:PT12H',
@@ -56,7 +56,7 @@ export function buildICS(activities: Activity[]): string {
     const desc = a.description ? `${a.description}\n${meta}` : meta;
     lines.push(
       'BEGIN:VEVENT',
-      `UID:${a.id}@emu-stu`,
+      `UID:${a.id}@uem-stu`,
       `DTSTAMP:${stamp}`,
       `DTSTART:${dtLocal(a.date, a.start)}`,
       `DTEND:${dtLocal(a.date, endTime)}`,

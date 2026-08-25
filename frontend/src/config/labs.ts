@@ -1,7 +1,7 @@
 /**
  * 实验室数据接口定义与配置
  *
- * 存放所有实验室的展示信息，供 <emu-labs> 组件消费
+ * 存放所有实验室的展示信息，供 <uem-labs> 组件消费
  */
 
 /** 单个实验室的数据结构 */
@@ -37,7 +37,7 @@ export const LAB_ITEMS: readonly LabItem[] = [
     professors: ['陈超'],
     tags: ['物联网', '数字孪生', '虚拟现实', '嵌入式'],
     icon: 'sensors',
-    href: 'https://emu-stu.github.io/IOT-lab-web/',
+    href: 'https://uem-stu.github.io/IOT-lab-web/',
   },
   {
     name: '河北省安全生产与应急处置特种机器人重点实验室',
